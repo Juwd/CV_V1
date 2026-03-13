@@ -16,7 +16,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import imgProfile from "figma:asset/5340b31f355b944aa50c4bae35822c3890f91e21.png";
+import imgProfile from "../../assets/5340b31f355b944aa50c4bae35822c3890f91e21.png";
 
 const skills = [
   { icon: <Globe className="w-6 h-6" />, title: "Geospatial Development", desc: "QGIS, ArcGIS, Leaflet.js, Mapbox, GeoServer, RESTful APIs, GeoPandas, spatial data pipelines" },

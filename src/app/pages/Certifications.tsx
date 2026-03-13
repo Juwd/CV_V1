@@ -4,16 +4,16 @@ import { PageHeader } from "../components/PageHeader";
 import { Award, ExternalLink, Calendar, X, ZoomIn } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
-import imgKbaTraining from "/assets/certifications/586784cb33755218775e6e5495f96a80d95bc3a0.png";
-import imgKbaExam from "/assets/certifications/15334cfa948c06cd48d109347c0fcdf024962e29.png";
-import imgPamsParticipation from "/assets/certifications/eb6af9d548bde1389e5ca2dbc41f34edc73d3483.png";
-import imgPamsPoster from "/assets/certifications/3761d42df2b50c221b5e08e65197e9b32cc521fe.png";
-import imgCopernicus from "/assets/certifications/ac2cb5306c42971479e1d67929e58ace56070a83.png";
-import imgMarineKba from "/assets/certifications/6ce8073816e7d36bc23475f452041c4e20936ace.png";
-import imgAccentureRecognition from "/assets/certifications/4b1c520c1bb8bc72479dcc4c3f2aad10707fb1f2.png";
-import imgAccentureParticipation from "/assets/certifications/1818d14d7269e420347e9353e950df4b8391a776.png";
-import imgVentureLab from "/assets/certifications/5489b67409feba58d261b8264e52ba996c05530a.png";
-import imgSchneider from "/assets/certifications/4a0f2f357f2ba27ab684d79813cd4955da2d2f7b.png";
+import imgKbaTraining from "../../assets/586784cb33755218775e6e5495f96a80d95bc3a0.png";
+import imgKbaExam from "../../assets/15334cfa948c06cd48d109347c0fcdf024962e29.png";
+import imgPamsParticipation from "../../assets/eb6af9d548bde1389e5ca2dbc41f34edc73d3483.png";
+import imgPamsPoster from "../../assets/3761d42df2b50c221b5e08e65197e9b32cc521fe.png";
+import imgCopernicus from "../../assets/ac2cb5306c42971479e1d67929e58ace56070a83.png";
+import imgMarineKba from "../../assets/6ce8073816e7d36bc23475f452041c4e20936ace.png";
+import imgAccentureRecognition from "../../assets/4b1c520c1bb8bc72479dcc4c3f2aad10707fb1f2.png";
+import imgAccentureParticipation from "../../assets/1818d14d7269e420347e9353e950df4b8391a776.png";
+import imgVentureLab from "../../assets/5489b67409feba58d261b8264e52ba996c05530a.png";
+import imgSchneider from "../../assets/4a0f2f357f2ba27ab684d79813cd4955da2d2f7b.png";
 
 const certifications = [
   {

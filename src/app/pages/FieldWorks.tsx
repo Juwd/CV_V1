@@ -4,9 +4,9 @@ import { PageHeader } from "../components/PageHeader";
 import { Compass, MapPin, Calendar, ChevronLeft, ChevronRight, X, ZoomIn, Camera } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
-import imgBoat from "figma:asset/422b90aabe7741de36d82d3210d2436f4dd623ea.png";
-import imgAerial from "figma:asset/78e34be47906ecc1715118cbb25dab3d65571789.png";
-import imgCoastal from "figma:asset/6ceb4947719a325f466729bbd0a423e3bae75dc2.png";
+import imgBoat from "../../assets/422b90aabe7741de36d82d3210d2436f4dd623ea.png";
+import imgAerial from "../../assets/78e34be47906ecc1715118cbb25dab3d65571789.png";
+import imgCoastal from "../../assets/6ceb4947719a325f466729bbd0a423e3bae75dc2.png";
 
 const mpaGallery = [
   { src: imgAerial, caption: "Aerial drone shot — crystal-clear waters and reef structure of an MPA site in Pulong Bato Batangas" },
