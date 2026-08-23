@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import imgProfile from "../../assets/5340b31f355b944aa50c4bae35822c3890f91e21.png";
-import heroVideo from "../../assets/LandingPageVideo.mp4";
+import heroVideo from "../../assets/LandingPageVideo.MP4";
 import heroBackup from "../../assets/LandingPageHeroBackup.jpg";
 
 const skills = [

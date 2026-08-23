@@ -1,16 +1,21 @@
 /// <reference types="vite/client" />
 
-declare module "*.JPG" {
-  const value: string;
-  export default value;
+declare module "*.png" {
+  const source: string;
+  export default source;
 }
 
-declare module "*.JPEG" {
-  const value: string;
-  export default value;
+declare module "*.jpg" {
+  const source: string;
+  export default source;
+}
+
+declare module "*.mp4" {
+  const source: string;
+  export default source;
 }
 
 declare module "*.MP4" {
-  const value: string;
-  export default value;
+  const source: string;
+  export default source;
 }
