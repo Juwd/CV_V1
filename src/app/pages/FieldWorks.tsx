@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Link } from "react-router";
 import { PageHeader } from "../components/PageHeader";
 import { Compass, MapPin, Calendar, ChevronLeft, ChevronRight, X, ZoomIn, Camera } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -7,6 +8,9 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import imgBoat from "../../assets/422b90aabe7741de36d82d3210d2436f4dd623ea.png";
 import imgAerial from "../../assets/78e34be47906ecc1715118cbb25dab3d65571789.png";
 import imgCoastal from "../../assets/6ceb4947719a325f466729bbd0a423e3bae75dc2.png";
+import physOcean from "../../assets/fieldworks/physical-oceanography.png";
+import reefMonitoring from "../../assets/fieldworks/reef-monitoring-1.jpg";
+import marineSurvey from "../../assets/fieldworks/marine-mammal-survey-1.JPG";
 
 const mpaGallery = [
   { src: imgAerial, caption: "Aerial drone shot — crystal-clear waters and reef structure of an MPA site in Pulong Bato Batangas" },
@@ -20,7 +24,8 @@ const otherFieldWorks = [
     location: "Philippines",
     date: "Consultancy",
     description: "Gained hands-on expertise with field sampling instruments through hired consultancy for a Physical Oceanography Survey. Collected oceanographic data using professional-grade sampling equipment.",
-    image: "https://images.unsplash.com/photo-1602144586078-7d95c8d7808c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3JhbCUyMHJlZWYlMjBtYXJpbmUlMjBjb25zZXJ2YXRpb258ZW58MXx8fHwxNzczMzExNjI2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: physOcean,
+    link: null,
     tags: ["Oceanography", "Field Sampling", "Data Collection"],
   },
   {
@@ -28,7 +33,8 @@ const otherFieldWorks = [
     location: "Philippines",
     date: "Field Assistance",
     description: "Acquired adept reef monitoring skills through field assistance work. Conducted underwater surveys and assessments of coral reef health and biodiversity.",
-    image: "https://images.unsplash.com/photo-1602144586078-7d95c8d7808c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3JhbCUyMHJlZWYlMjBtYXJpbmUlMjBjb25zZXJ2YXRpb258ZW58MXx8fHwxNzczMzExNjI2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: reefMonitoring,
+    link: "/volunteer/alwan",
     tags: ["Reef Monitoring", "Marine Biology", "Underwater Survey"],
   },
   {
@@ -36,7 +42,8 @@ const otherFieldWorks = [
     location: "Philippines",
     date: "Balyena.org",
     description: "Skilled drone operator — obtained through field documentation in Marine Mammal Surveys for whales (Balyena.org), citizen science Alwan Method and Para El Mar on-site visits.",
-    image: "https://images.unsplash.com/photo-1544070555-a19fbf2277ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGFsZSUyMHdhdGNoaW5nJTIwb2NlYW4lMjBib2F0fGVufDF8fHx8MTc3MzMxMTYyOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: marineSurvey,
+    link: "/volunteer/balyena",
     tags: ["Drone Operations", "Marine Mammals", "Citizen Science"],
   },
 ];
@@ -47,6 +54,22 @@ export function FieldWorks() {
 
   const nextPhoto = () => setActivePhoto((prev) => (prev + 1) % mpaGallery.length);
   const prevPhoto = () => setActivePhoto((prev) => (prev - 1 + mpaGallery.length) % mpaGallery.length);
+
+  useEffect(() => {
+    const preventDefault = (event: Event) => {
+      if ((event.target as HTMLElement)?.tagName === "IMG") {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", preventDefault);
+    document.addEventListener("dragstart", preventDefault);
+
+    return () => {
+      document.removeEventListener("contextmenu", preventDefault);
+      document.removeEventListener("dragstart", preventDefault);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen pb-20">
@@ -228,58 +251,63 @@ export function FieldWorks() {
         </div>
 
         <div className="space-y-6">
-          {otherFieldWorks.map((work, i) => (
-            <motion.div
-              key={work.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + i * 0.1 }}
-              className="group rounded-2xl overflow-hidden bg-ocean-mid/30 border border-ocean-light/10 hover:border-ocean-light/20 transition-all"
-            >
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-72 h-48 md:h-auto shrink-0 relative overflow-hidden">
-                  <ImageWithFallback
-                    src={work.image}
-                    alt={work.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-ocean-deep/50 hidden md:block" />
-                </div>
-                <div className="p-6 flex-1">
-                  <h3
-                    className="text-ocean-foam mb-2"
-                    style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.15rem" }}
-                  >
-                    {work.title}
-                  </h3>
-                  <div className="flex flex-wrap items-center gap-3 mb-3 text-ocean-foam/40" style={{ fontSize: "0.85rem" }}>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {work.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      {work.date}
-                    </span>
+          {otherFieldWorks.map((work, i) => {
+            const card = (
+              <motion.div
+                key={work.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + i * 0.1 }}
+                className="group rounded-2xl overflow-hidden bg-ocean-mid/30 border border-ocean-light/10 hover:border-ocean-light/20 transition-all"
+              >
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-72 h-48 md:h-auto shrink-0 relative overflow-hidden">
+                    <ImageWithFallback
+                      src={work.image}
+                      alt={work.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-ocean-deep/50 hidden md:block" />
                   </div>
-                  <p className="text-ocean-foam/55 mb-4" style={{ fontSize: "0.9rem", lineHeight: 1.7 }}>
-                    {work.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {work.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-full bg-ocean-light/10 text-ocean-light border border-ocean-light/15"
-                        style={{ fontSize: "0.75rem" }}
-                      >
-                        {tag}
+                  <div className="p-6 flex-1">
+                    <h3
+                      className="text-ocean-foam mb-2"
+                      style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.15rem" }}
+                    >
+                      {work.title}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-3 mb-3 text-ocean-foam/40" style={{ fontSize: "0.85rem" }}>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {work.location}
                       </span>
-                    ))}
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {work.date}
+                      </span>
+                    </div>
+                    <p className="text-ocean-foam/55 mb-4" style={{ fontSize: "0.9rem", lineHeight: 1.7 }}>
+                      {work.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {work.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-full bg-ocean-light/10 text-ocean-light border border-ocean-light/15"
+                          style={{ fontSize: "0.75rem" }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+
+            if (!work.link) return card;
+            return <Link key={work.title} to={work.link}>{card}</Link>;
+          })}
         </div>
       </div>
 

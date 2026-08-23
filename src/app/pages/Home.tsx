@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import imgProfile from "../../assets/5340b31f355b944aa50c4bae35822c3890f91e21.png";
+import heroVideo from "../../assets/LandingPageVideo.mp4";
+import heroBackup from "../../assets/LandingPageHeroBackup.jpg";
 
 const skills = [
   { icon: <Globe className="w-6 h-6" />, title: "Geospatial Development", desc: "QGIS, ArcGIS, Leaflet.js, Mapbox, GeoServer, RESTful APIs, GeoPandas, spatial data pipelines" },
@@ -35,7 +37,7 @@ const highlights = [
 /* Floating bubble component for ambient ocean feel */
 function Bubbles() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
       {[...Array(20)].map((_, i) => {
         const size = Math.random() * 4 + 2;
         const left = Math.random() * 100;
@@ -109,50 +111,60 @@ export function Home() {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, roleIndex]);
 
+  useEffect(() => {
+    const preventDefault = (event: Event) => {
+      if ((event.target as HTMLElement)?.tagName === "IMG") {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", preventDefault);
+    document.addEventListener("dragstart", preventDefault);
+
+    return () => {
+      document.removeEventListener("contextmenu", preventDefault);
+      document.removeEventListener("dragstart", preventDefault);
+    };
+  }, []);
+
   return (
     <div className="relative">
       {/* ===== CINEMATIC HERO ===== */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Video Background */}
-        <motion.div style={{ scale: heroScale }} className="absolute inset-0">
-          {/* 
-            Replace this video src with your actual ocean/intro video from the Google Drive folder.
-            The video should be a dark ocean or underwater scene for best results.
-          */}
+        <motion.div style={{ scale: heroScale }} className="absolute inset-0 z-0">
           <video
             autoPlay
-            loop
             muted
             playsInline
             onLoadedData={() => setVideoLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              videoLoaded ? "opacity-30" : "opacity-0"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${
+              videoLoaded ? "opacity-100" : "opacity-0"
             }`}
-            poster="https://images.unsplash.com/photo-1589363794163-c428490365c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWVwJTIwb2NlYW4lMjB1bmRlcndhdGVyJTIwZGFyayUyMGJsdWV8ZW58MXx8fHwxNzczMzE3Mzc2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            poster={heroBackup}
           >
-            {/* Add your video source here - e.g. <source src="/your-ocean-video.mp4" type="video/mp4" /> */}
+            <source src={heroVideo} type="video/mp4" />
           </video>
 
-          {/* Fallback background image (shows while video loads or if no video) */}
           {!videoLoaded && (
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1589363794163-c428490365c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWVwJTIwb2NlYW4lMjB1bmRlcndhdGVyJTIwZGFyayUyMGJsdWV8ZW58MXx8fHwxNzczMzE3Mzc2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src={heroBackup}
               alt="Deep ocean background"
-              className="absolute inset-0 w-full h-full object-cover opacity-25"
+              className="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
             />
           )}
         </motion.div>
 
         {/* Gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ocean-deep via-ocean-deep/85 to-ocean-deep/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ocean-deep via-transparent to-ocean-deep/60" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-ocean-deep to-transparent" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-ocean-deep/60 via-ocean-deep/45 to-ocean-deep/30" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-ocean-deep/50 via-transparent to-ocean-deep/30" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 z-10 bg-gradient-to-t from-ocean-deep/60 to-transparent" />
 
         {/* Ambient bubbles */}
         <Bubbles />
 
         {/* Hero content — split layout */}
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 min-h-screen flex items-center">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-30 min-h-screen flex items-center">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left: Text content */}
@@ -160,6 +172,7 @@ export function Home() {
                 style={{ y: textY }}
                 className="order-2 lg:order-1 text-center lg:text-left"
               >
+                <div className="inline-block bg-ocean-deep/55 backdrop-blur-sm border border-ocean-light/10 rounded-2xl p-5 sm:p-6 shadow-[0_18px_60px_rgba(2,6,23,0.45)]">
                 {/* Greeting tag */}
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -171,7 +184,7 @@ export function Home() {
                     className="w-2 h-2 rounded-full bg-ocean-teal"
                     style={{ animation: "pulse 2s ease-in-out infinite" }}
                   />
-                  <span className="text-ocean-teal" style={{ fontSize: "0.8rem", letterSpacing: "0.08em" }}>
+                  <span className="text-ocean-teal" style={{ fontSize: "0.8rem", letterSpacing: "0.08em", opacity: 1 }}>
                     Website under construction, Please be Patient
                   </span>
                 </motion.div>
@@ -187,6 +200,7 @@ export function Home() {
                     fontSize: "clamp(2.8rem, 6vw, 5rem)",
                     lineHeight: 1.05,
                     letterSpacing: "-0.02em",
+                    opacity: 1,
                   }}
                 >
                   Jude Wincel
@@ -202,8 +216,8 @@ export function Home() {
                   className="mb-6 h-8 flex items-center lg:justify-start justify-center"
                 >
                   <span
-                    className="text-ocean-foam/50 font-mono"
-                    style={{ fontSize: "1rem", letterSpacing: "0.04em" }}
+                    className="font-mono text-ocean-foam"
+                    style={{ fontSize: "1rem", letterSpacing: "0.04em", opacity: 1 }}
                   >
                     {"// "}
                     <span className="text-ocean-teal">
@@ -221,8 +235,8 @@ export function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
-                  className="max-w-lg mx-auto lg:mx-0 mb-10 text-ocean-foam/55"
-                  style={{ fontSize: "1.05rem", lineHeight: 1.8 }}
+                  className="max-w-lg mx-auto lg:mx-0 mb-10 text-ocean-foam"
+                  style={{ fontSize: "1.05rem", lineHeight: 1.8, opacity: 1 }}
                 >
                   Skilled in project and database management with a solid foundation in Geospatial Analysis, 
                   Full-stack Development, and Environmental Modelling. Passionate about biodiversity 
@@ -289,6 +303,7 @@ export function Home() {
                     <Mail className="w-4 h-4" />
                   </a>
                 </motion.div>
+                </div>
               </motion.div>
 
               {/* Right: Large Portrait */}

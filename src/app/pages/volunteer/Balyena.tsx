@@ -1,9 +1,51 @@
 import { motion } from "motion/react";
+import { useEffect } from "react";
 import { PageHeader } from "../../components/PageHeader";
 import { Fish, Users, Calendar, MapPin, ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 
+import marinePhoto from "../../../assets/Marine Mammal Surveys — Drone Operations/DJI_0196.JPG";
+import marineVideo from "../../../assets/Marine Mammal Surveys — Drone Operations/DJI_0207.MP4";
+import marineClip from "../../../assets/Marine Mammal Surveys — Drone Operations/Shark_Short.mp4";
+
+const balyenaGallery = [
+  {
+    type: "image",
+    src: marinePhoto,
+    alt: "Marine mammal survey in the Philippines",
+    caption: "Marine mammal survey expedition 2025",
+  },
+  {
+    type: "video",
+    src: marineVideo,
+    alt: "Drone survey footage from the marine mammal survey",
+    caption: "Drone footage capturing marine mammal sightings during the survey",
+  },
+  {
+    type: "video",
+    src: marineClip,
+    alt: "Short marine mammal survey clip",
+    caption: "Shark sighting during the marine mammal survey",
+  },
+];
+
 export function Balyena() {
+  useEffect(() => {
+    const preventDefault = (event: Event) => {
+      if ((event.target as HTMLElement)?.tagName === "IMG") {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", preventDefault);
+    document.addEventListener("dragstart", preventDefault);
+
+    return () => {
+      document.removeEventListener("contextmenu", preventDefault);
+      document.removeEventListener("dragstart", preventDefault);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen pb-20">
       <PageHeader
@@ -20,8 +62,8 @@ export function Balyena() {
         >
           <div className="h-64 md:h-80 overflow-hidden relative">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1544070555-a19fbf2277ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGFsZSUyMHdhdGNoaW5nJTIwb2NlYW4lMjBib2F0fGVufDF8fHx8MTc3MzMxMTYyOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Balyena whale watching"
+              src={marinePhoto}
+              alt="Marine Mammal Surveys — Drone Operations"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ocean-deep/80 to-transparent" />
@@ -29,13 +71,13 @@ export function Balyena() {
           <div className="p-8">
             <div className="flex flex-wrap gap-4 mb-6" style={{ fontSize: "0.85rem" }}>
               <span className="flex items-center gap-1.5 text-ocean-foam/50">
-                <Users className="w-4 h-4" /> GIS Volunteer / Research Assistant
+                <Users className="w-4 h-4" /> Field Volunteer
               </span>
               <span className="flex items-center gap-1.5 text-ocean-foam/50">
-                <MapPin className="w-4 h-4" /> Bohol Sea, Philippines
+                <MapPin className="w-4 h-4" /> Babuyanes Islands, Philippines
               </span>
               <span className="flex items-center gap-1.5 text-ocean-foam/50">
-                <Calendar className="w-4 h-4" /> 2023 - Present
+                <Calendar className="w-4 h-4" /> 2025
               </span>
             </div>
 
@@ -49,6 +91,35 @@ export function Balyena() {
                 of whale populations. Contributed to aerial surveys and data collection that supports 
                 Balyena.org's cetacean research and conservation efforts across Philippine waters.
               </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {balyenaGallery.map((item) => (
+                <div key={item.alt} className="group relative overflow-hidden rounded-2xl border border-ocean-light/10 bg-ocean-deep/30">
+                  {item.type === "video" ? (
+                    <video
+                      autoPlay
+                      muted
+                      playsInline
+                      className="h-64 w-full object-cover"
+                     onContextMenu={(e) => e.preventDefault()} // Prevents right-click 'Show Controls'
+                    >
+                      <source src={item.src} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <ImageWithFallback
+                      src={item.src}
+                      alt={item.alt}
+                      className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ocean-deep/85 via-ocean-deep/45 to-transparent p-3">
+                    <p className="text-ocean-foam/80" style={{ fontSize: "0.72rem", lineHeight: 1.5 }}>
+                      {item.caption}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
