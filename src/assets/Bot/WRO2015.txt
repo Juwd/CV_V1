@@ -1,0 +1,5 @@
+Title: Team Philippines Shines at the World Robotics Olympiad 2015
+
+Description: The Philippine Robotics team, which represented the country in the World Robotics Olympiad 2015 (WRO 2015) held last November 6 to 8 in Doha, Qatar, once again showed the world their advanced skills in robotics systems. 
+
+Instructions: Scrape more details here and link to this site `https://www.geekypinas.com/2015/11/team-philippines-shines-at-world-robotics-olympiad-2015.html`

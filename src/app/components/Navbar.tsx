@@ -18,7 +18,7 @@ const navItems = [
     path: "/projects",
     children: [
       { label: "Ansys Fluid Simulation", path: "/projects/ansys" },
-      { label: "Bot", path: "/projects/bot" },
+      { label: "AI and Robotics", path: "/projects/bot" },
       { label: "CAD Files", path: "/projects/cad" },
       { label: "Gabay Startup", path: "/projects/gabay" },
       { label: "Maps", path: "/projects/maps" },
