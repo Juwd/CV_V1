@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Link } from "react-router";
 import { PageHeader } from "../components/PageHeader";
 import { Award, ExternalLink, Calendar, X, ZoomIn } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -250,6 +251,16 @@ export function Certifications() {
                 <p className="text-ocean-foam/50 mb-1" style={{ fontSize: "0.85rem", lineHeight: 1.6 }}>
                   {selectedCert.description}
                 </p>
+                {selectedCert.id === "venture-lab" && (
+                  <Link
+                    to="/projects/gabay"
+                    onClick={(event) => event.stopPropagation()}
+                    className="inline-flex items-center gap-2 mt-3 px-3 py-1.5 rounded-lg bg-ocean-teal/10 text-ocean-teal border border-ocean-teal/20 hover:bg-ocean-teal/20 transition-all"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" /> View BrainCheck project
+                  </Link>
+                )}
                 <p className="flex items-center gap-1 text-ocean-foam/40" style={{ fontSize: "0.8rem" }}>
                   <ExternalLink className="w-3 h-3" />
                   {selectedCert.issuer}

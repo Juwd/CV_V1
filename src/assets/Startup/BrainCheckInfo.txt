@@ -1,0 +1,3 @@
+Braincheck, an app the helps patients deal with seizures via tracking, machine learning and data collection through a cloud server for doctors to monitor. 
+
+I collaborated with students all around the globe, coordinated amidst the difference in timezone and manage to develop a product at the span of a week. This was an amazing experience and one of the best weeks that I had in Upkey
