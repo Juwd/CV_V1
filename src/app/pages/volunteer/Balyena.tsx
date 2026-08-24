@@ -4,9 +4,10 @@ import { PageHeader } from "../../components/PageHeader";
 import { Fish, Users, Calendar, MapPin, ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 
-import marinePhoto from "../../../assets/Marine Mammal Surveys — Drone Operations/DJI_0196.JPG";
-import marineVideo from "../../../assets/Marine Mammal Surveys — Drone Operations/DJI_0207.MP4";
-import marineClip from "../../../assets/Marine Mammal Surveys — Drone Operations/Shark_Short.mp4";
+const marinePhoto = new URL("../../../assets/Marine Mammal Surveys — Drone Operations/DJI_0196.JPG", import.meta.url).href;
+const dolphinVideo = new URL("../../../assets/Marine Mammal Surveys — Drone Operations/DolphinCompressed 0205.mp4", import.meta.url).href;
+const marineClip = new URL("../../../assets/Marine Mammal Surveys — Drone Operations/Shark_Short.mp4", import.meta.url).href;
+const volunteerCrewPhoto = new URL("../../../assets/Marine Mammal Surveys — Drone Operations/dji_fly_20250408_164434_123_1744102206178_photo_optimized.jpg", import.meta.url).href;
 
 const balyenaGallery = [
   {
@@ -17,15 +18,21 @@ const balyenaGallery = [
   },
   {
     type: "video",
-    src: marineVideo,
-    alt: "Drone survey footage from the marine mammal survey",
-    caption: "Drone footage capturing marine mammal sightings during the survey",
+    src: dolphinVideo,
+    alt: "Dolphin footage from the marine mammal survey",
+    caption: "Drone footage capturing dolphins during the survey",
   },
   {
     type: "video",
     src: marineClip,
     alt: "Short marine mammal survey clip",
     caption: "Shark sighting during the marine mammal survey",
+  },
+  {
+    type: "image",
+    src: volunteerCrewPhoto,
+    alt: "Balyena.org volunteer crew during the 2025 survey",
+    caption: "Balyena.org volunteer crew during the 2025 survey",
   },
 ];
 
@@ -83,13 +90,14 @@ export function Balyena() {
 
             <div className="space-y-4 text-ocean-foam/60" style={{ fontSize: "0.95rem", lineHeight: 1.8 }}>
               <p>
-                Balyena.org is a Philippine marine wildlife research and conservation organization
-                dedicated to studying cetaceans (whales and dolphins) in Philippine waters.
+                Volunteered with Balyena.org in support of marine conservation work focused on dolphins
+                and whales in the Philippines. Operated drones and cameras to capture aerial footage
+                for research and documentation, assisted with fieldwork, and supported other tasks
+                contributing to the organization's mission.
               </p>
               <p>
-                Served as a skilled drone operator for Marine Mammal Surveys, conducting field documentation 
-                of whale populations. Contributed to aerial surveys and data collection that supports 
-                Balyena.org's cetacean research and conservation efforts across Philippine waters.
+                Applied technical skills to help protect marine ecosystems and raise awareness about
+                ocean conservation.
               </p>
             </div>
 
