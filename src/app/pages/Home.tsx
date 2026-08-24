@@ -31,7 +31,6 @@ const highlights = [
   { label: "Projects", value: "9+", link: "/projects/ansys" },
   { label: "Certifications", value: "10", link: "/certifications" },
   { label: "Volunteer Orgs", value: "3", link: "/volunteer/alwan" },
-  { label: "Awards", value: "3", link: "/workshops" },
 ];
 
 /* Floating bubble component for ambient ocean feel */
@@ -417,7 +416,7 @@ export function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-ocean-light/30 to-transparent" />
 
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {highlights.map((item, i) => (
               <motion.div
                 key={item.label}

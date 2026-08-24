@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { PageHeader } from "../../components/PageHeader";
-import { Palette, Users, Calendar, MapPin } from "lucide-react";
+import { Waves, Users, Calendar, MapPin } from "lucide-react";
 import { ImageWithFallback } from "../../components/figma/ImageWithFallback";
 
 import alwanPhoto1 from "../../../assets/Br. Alfred Shields FSC Marine Station — Reef Monitoring/PXL_20250624_012516302.jpg";
@@ -20,7 +20,7 @@ const alwanGallery = [
     type: "image",
     src: alwanPhoto2,
     alt: "Field team assessing reef condition",
-    caption: "Field team assessing reef condition",
+    caption: "One of the field team group practicing the Alwan Method for assessing reef condition",
   },
   {
     type: "image",
@@ -58,7 +58,7 @@ export function Alwan() {
       <PageHeader
         title="Alwan Method Workshop"
         subtitle="The Alwan method is a simplified, low-cost citizen science framework used to monitor and assess coral reef health."
-        icon={<Palette className="w-6 h-6" />}
+        icon={<Waves className="w-6 h-6" />}
       />
 
       <div className="max-w-5xl mx-auto px-4">
