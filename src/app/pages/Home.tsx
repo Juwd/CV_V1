@@ -184,7 +184,7 @@ export function Home() {
                     style={{ animation: "pulse 2s ease-in-out infinite" }}
                   />
                   <span className="text-ocean-teal" style={{ fontSize: "0.8rem", letterSpacing: "0.08em", opacity: 1 }}>
-                    Website under construction, Please be Patient
+                    Feel free to contact me anytime!
                   </span>
                 </motion.div>
 
