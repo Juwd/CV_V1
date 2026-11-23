@@ -19,6 +19,9 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import imgProfile from "../../assets/5340b31f355b944aa50c4bae35822c3890f91e21.png";
 import heroVideo from "../../assets/LandingPageVideo.MP4";
 import heroBackup from "../../assets/LandingPageHeroBackup.jpg";
+import mpaDatabaseThumbnail from "../../assets/mpa-database-live.png";
+import turbineThumbnail from "../../assets/AnsysFluidSimulation/Thesis/WingletModelling.PNG";
+import oilSpillThumbnail from "../../assets/WebGnome/07302024_1537_CaviteCity.png";
 
 const skills = [
   { icon: <Globe className="w-6 h-6" />, title: "Geospatial Development", desc: "QGIS, ArcGIS, Leaflet.js, Mapbox, GeoServer, RESTful APIs, GeoPandas, spatial data pipelines" },
@@ -527,21 +530,21 @@ export function Home() {
               {
                 title: "MPA Support Network",
                 desc: "Full-stack geospatial database & web platform for Marine Protected Areas across the Philippines",
-                image: "https://images.unsplash.com/photo-1576158113421-5484e37d43f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxHSVMlMjBtYXAlMjBkaWdpdGFsJTIwbGF5ZXJzfGVufDF8fHx8MTc3MzMxMTYzM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+                image: mpaDatabaseThumbnail,
                 link: "/projects/mpa-database",
                 tag: "GIS",
               },
               {
                 title: "Marine Current Turbine",
                 desc: "Thesis — 3D designed winglet turbine blades with ANSYS CFD simulation (2.44M cells)",
-                image: "https://images.unsplash.com/photo-1620662892011-f5c2d523fae2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFwJTIwZ2Vvc3BhdGlhbCUyMHRlY2hub2xvZ3klMjBkYXJrfGVufDF8fHx8MTc3MzMxNzM3N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+                image: turbineThumbnail,
                 link: "/projects/ansys",
                 tag: "Engineering",
               },
               {
                 title: "Manila Bay Oil Spill Model",
                 desc: "WebGNOME simulation for the Philippine Coast Guard using Copernicus satellite data",
-                image: "https://images.unsplash.com/photo-1544070555-a19fbf2277ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGFsZSUyMHdhdGNoaW5nJTIwb2NlYW4lMjBib2F0fGVufDF8fHx8MTc3MzMxMTYyOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+                image: oilSpillThumbnail,
                 link: "/projects/webgnome",
                 tag: "Environmental",
               },
